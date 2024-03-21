@@ -1,4 +1,10 @@
-const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
+const tabs = (
+  headerSelector,
+  tabSelector,
+  contentSelector,
+  activeClass,
+  display = "block"
+) => {
   const header = document.querySelector(headerSelector),
     tab = document.querySelectorAll(tabSelector),
     content = document.querySelectorAll(contentSelector);
@@ -15,7 +21,7 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
 
   function showTabContent(i = 0) {
     tab[i].classList.add(activeClass);
-    content[i].style.display = "block";
+    content[i].style.display = display;
   }
 
   header.addEventListener("click", (e) => {
