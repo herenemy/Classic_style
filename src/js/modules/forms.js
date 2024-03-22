@@ -1,19 +1,16 @@
-const forms = () => {
+import validateNumInput from "./validateNumInput";
+
+const forms = (state) => {
   const form = document.querySelectorAll("form"),
-    input = document.querySelectorAll("input"),
-    phoneInput = document.querySelectorAll(`input[name="user_phone"]`);
+    input = document.querySelectorAll("input");
+
+  validateNumInput(document.querySelectorAll('input[name="user_phone"]'));
 
   const message = {
     loading: "Загрузка...",
     success: "Спасибо! Скоро мы с вами свяжемся",
     failure: "При отправке что-то пошло не так",
   };
-
-  phoneInput.forEach((input) => {
-    input.addEventListener("input", () => {
-      input.value = input.value.replace(/\D/, "");
-    });
-  });
 
   const clearInputs = () => {
     input.forEach((item) => {
@@ -40,6 +37,18 @@ const forms = () => {
       item.appendChild(statusMessage);
 
       const formData = new FormData(item);
+      if (item.getAttribute("data-calc") == "end") {
+        for (let key in state) {
+          formData.append(key, state[key]);
+        }
+        document.querySelector(".popup_calc_end").style.display = "none";
+        document.body.style.overflow = "";
+        Object.keys(state).forEach((keys) => {
+          delete state[keys];
+        });
+        statusMessage.remove();
+      }
+
       postData(`assets/server.php`, formData)
         .then((data) => {
           console.log(data);
