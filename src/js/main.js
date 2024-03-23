@@ -11,7 +11,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let modalState = {};
 
-  images();
   timer(".container1", "2024-10-10");
   changeModalState(modalState);
   modals(modalState);
@@ -30,4 +29,5 @@ window.addEventListener("DOMContentLoaded", () => {
     "inline-block"
   );
   forms(modalState);
+  images();
 });
