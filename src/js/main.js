@@ -4,13 +4,15 @@ import tabs from "./modules/tabs";
 import forms from "./modules/forms";
 import changeModalState from "./modules/changeModalState";
 import timer from "./modules/timer";
+import images from "./modules/images";
 
 window.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
   let modalState = {};
 
-  timer(".container1", "2025-10-10");
+  images();
+  timer(".container1", "2024-10-10");
   changeModalState(modalState);
   modals(modalState);
   tabs(".glazing_slider", ".glazing_block", ".glazing_content", "active");
